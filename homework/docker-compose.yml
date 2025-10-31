@@ -17,10 +17,10 @@ services:
       - "8081:80"
     restart: unless-stopped
     environment:
-      - MYSQL_HOST=dvwa_db
-      - MYSQL_USER=dvwa
-      - MYSQL_PASSWORD=dvwa
-      - MYSQL_DATABASE=dvwa
+      MYSQL_HOST: "dvwa_db"
+      MYSQL_USER: "dvwa"
+      MYSQL_PASSWORD: "dvwa"
+      MYSQL_DATABASE: "dvwa"
 
   dvwa_db:
     image: mysql:5.7
@@ -28,10 +28,10 @@ services:
     networks:
       - blue_team_net
     environment:
-      - MYSQL_ROOT_PASSWORD=rootpassword
-      - MYSQL_DATABASE=dvwa
-      - MYSQL_USER=dvwa
-      - MYSQL_PASSWORD=dvwa
+      MYSQL_ROOT_PASSWORD: "rootpassword"
+      MYSQL_DATABASE: "dvwa"
+      MYSQL_USER: "dvwa"
+      MYSQL_PASSWORD: "dvwa"
     volumes:
       - dvwa_db_data:/var/lib/mysql
     restart: unless-stopped
@@ -44,17 +44,24 @@ services:
     ports:
       - "2222:2222"
     environment:
-      - COWRIE_TTYLOG_ENABLED="true"
-      - COWRIE_DOWNLOADS_ENABLED="true"
-      - COWRIE_SSH_LISTEN_PORT="2222"
-      - COWRIE_TELNET_ENABLED="false"
-      - COWRIE_HOSTNAME="ssh-server"
-      - COWRIE_SSH_VERSION="SSH-2.0-OpenSSH_8.9p1"
-      - COWRIE_USERDB_ENABLED="true"
+      COWRIE_TTYLOG_ENABLED: "true"
+      COWRIE_DOWNLOADS_ENABLED: "true"
+      COWRIE_SSH_LISTEN_PORT: "2222"
+      COWRIE_TELNET_ENABLED: "false"
+      COWRIE_HOSTNAME: "ssh-server"
+      COWRIE_SSH_VERSION:  "SSH-2.0-OpenSSH_8.9p1"
+      COWRIE_USERDB_ENABLED: "true"
+      COWRIE_AUTH_CLASS: "userdb"
+      COWRIE_USERDB_FILE: "/cowrie/etc/userdb.txt"
     volumes:
       - cowrie_data:/cowrie/var
-      - cowrie_cfg:/cowrie/etc
+      - cowrie_cfg:/cowrie/etc:ro
     restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   smb:
     image: demisto/smb:latest
@@ -67,9 +74,9 @@ services:
     image: dockurr/samba:latest
     container_name: samba
     environment:
-      - NAME="Data"
-      - USER="samba"
-      - PASS="habit's smb server"
+      NAME: "Data"
+      USER: "samba"
+      PASS: "my_smb_s3rv3r"
     ports:
       - "445:445"
     volumes:
