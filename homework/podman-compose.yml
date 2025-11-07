@@ -16,11 +16,18 @@ services:
     ports:
       - "8081:80"
     restart: unless-stopped
+    volumes:
+      - ./log/dvwa:/var/log
     environment:
       MYSQL_HOST: "dvwa_db"
       MYSQL_USER: "dvwa"
       MYSQL_PASSWORD: "dvwa"
       MYSQL_DATABASE: "dvwa"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   dvwa_db:
     image: mysql:5.7
@@ -34,7 +41,13 @@ services:
       MYSQL_PASSWORD: "dvwa"
     volumes:
       - dvwa_db_data:/var/lib/mysql
+      - ./log/dvwa_db:/var/log/mysql
     restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   cowrie:
     image: cowrie/cowrie:latest
@@ -49,41 +62,45 @@ services:
       COWRIE_SSH_LISTEN_PORT: "2222"
       COWRIE_TELNET_ENABLED: "false"
       COWRIE_HOSTNAME: "ssh-server"
-      COWRIE_SSH_VERSION:  "SSH-2.0-OpenSSH_8.9p1"
+      COWRIE_SSH_VERSION: "SSH-2.0-OpenSSH_8.9p1"
       COWRIE_USERDB_ENABLED: "true"
-      COWRIE_AUTH_CLASS: "userdb"
-      COWRIE_USERDB_FILE: "/cowrie/etc/userdb.txt"
     volumes:
       - cowrie_data:/cowrie/var
-      - cowrie_cfg:/cowrie/etc:ro
-    restart: unless-stopped
+      - cowrie_cfg:/cowrie/etc
+      - ./log/cowrie:/cowrie/log
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
+    restart: unless-stopped
 
   smb:
-    image: demisto/smb:latest
+    image: bsantanna/smb:latest
     container_name: smb
     hostname: smb
-    detach: true
-    restart: always
-
-  samba:
-    image: dockurr/samba:latest
-    container_name: samba
     environment:
       NAME: "Data"
       USER: "samba"
-      PASS: "my_smb_s3rv3r"
+      PASS: "habit's smb server"
     ports:
       - "445:445"
     volumes:
-      - ./samba:/storage
+      - samba_storage:/storage
+      - ./log/smb:/var/log/samba
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
     restart: always
 
 volumes:
   dvwa_db_data:
   cowrie_data:
   cowrie_cfg:
+  samba_storage:
+  ./log/cowrie:
+  ./log/dvwa:
+  ./log/dvwa_db:
+  ./log/smb:
