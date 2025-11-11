@@ -80,7 +80,7 @@ services:
     container_name: smb
     hostname: smb
     environment:
-        - NAME="Data"
+      - NAME="Data"
       - USER="samba"
       - PASS="habit's smb server"
     ports:
