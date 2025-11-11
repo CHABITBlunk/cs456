@@ -19,10 +19,10 @@ services:
     volumes:
       - ./log/dvwa:/var/log
     environment:
-      MYSQL_HOST: "dvwa_db"
-      MYSQL_USER: "dvwa"
-      MYSQL_PASSWORD: "dvwa"
-      MYSQL_DATABASE: "dvwa"
+      - MYSQL_HOST="dvwa_db"
+      - MYSQL_USER="dvwa"
+      - MYSQL_PASSWORD="dvwa"
+      - MYSQL_DATABASE="dvwa"
     logging:
       driver: "json-file"
       options:
@@ -35,10 +35,10 @@ services:
     networks:
       - blue_team_net
     environment:
-      MYSQL_ROOT_PASSWORD: "rootpassword"
-      MYSQL_DATABASE: "dvwa"
-      MYSQL_USER: "dvwa"
-      MYSQL_PASSWORD: "dvwa"
+      - MYSQL_ROOT_PASSWORD="rootpassword"
+      - MYSQL_DATABASE="dvwa"
+      - MYSQL_USER="dvwa"
+      - MYSQL_PASSWORD="dvwa"
     volumes:
       - dvwa_db_data:/var/lib/mysql
       - ./log/dvwa_db:/var/log/mysql
@@ -57,13 +57,13 @@ services:
     ports:
       - "2222:2222"
     environment:
-      COWRIE_TTYLOG_ENABLED: "true"
-      COWRIE_DOWNLOADS_ENABLED: "true"
-      COWRIE_SSH_LISTEN_PORT: "2222"
-      COWRIE_TELNET_ENABLED: "false"
-      COWRIE_HOSTNAME: "ssh-server"
-      COWRIE_SSH_VERSION: "SSH-2.0-OpenSSH_8.9p1"
-      COWRIE_USERDB_ENABLED: "true"
+      - COWRIE_TTYLOG_ENABLED="true"
+      - COWRIE_DOWNLOADS_ENABLED="true"
+      - COWRIE_SSH_LISTEN_PORT="2222"
+      - COWRIE_TELNET_ENABLED="false"
+      - COWRIE_HOSTNAME="ssh-server"
+      - COWRIE_SSH_VERSION="SSH-2.0-OpenSSH_8.9p1"
+      - COWRIE_USERDB_ENABLED="true"
     volumes:
       - cowrie_data:/cowrie/var
       - cowrie_cfg:/cowrie/etc
@@ -80,9 +80,9 @@ services:
     container_name: smb
     hostname: smb
     environment:
-      NAME: "Data"
-      USER: "samba"
-      PASS: "habit's smb server"
+        - NAME="Data"
+      - USER="samba"
+      - PASS="habit's smb server"
     ports:
       - "445:445"
     volumes:
