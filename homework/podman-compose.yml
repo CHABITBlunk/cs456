@@ -17,12 +17,14 @@ services:
       - "8081:80"
     restart: unless-stopped
     volumes:
-      - ./log/dvwa:/var/log
+      - ./log/apache2:/var/log/apache2
+      - ./log/dvwa:/var/www/html/log
     environment:
       - MYSQL_HOST="dvwa_db"
       - MYSQL_USER="dvwa"
       - MYSQL_PASSWORD="dvwa"
       - MYSQL_DATABASE="dvwa"
+      - APACHE_SERVERNAME="localhost"
     logging:
       driver: "json-file"
       options:
@@ -57,13 +59,13 @@ services:
     ports:
       - "2222:2222"
     environment:
-      - COWRIE_TTYLOG_ENABLED="true"
-      - COWRIE_DOWNLOADS_ENABLED="true"
+      - COWRIE_TTYLOG_ENABLED=true
+      - COWRIE_DOWNLOADS_ENABLED=true
       - COWRIE_SSH_LISTEN_PORT="2222"
-      - COWRIE_TELNET_ENABLED="false"
+      - COWRIE_TELNET_ENABLED=false
       - COWRIE_HOSTNAME="ssh-server"
       - COWRIE_SSH_VERSION="SSH-2.0-OpenSSH_8.9p1"
-      - COWRIE_USERDB_ENABLED="true"
+      - COWRIE_USERDB_ENABLED=true
     volumes:
       - cowrie_data:/cowrie/var
       - cowrie_cfg:/cowrie/etc
@@ -74,6 +76,8 @@ services:
         max-size: "10m"
         max-file: "3"
     restart: unless-stopped
+    entrypoint: "/cowrie/cowrie-env/bin/twistd"
+    command: ["-n", "cowrie"]
 
   smb:
     image: bsantanna/smb:latest
@@ -82,12 +86,13 @@ services:
     environment:
       - NAME="Data"
       - USER="samba"
-      - PASS="habit's smb server"
+      - PASS="my_smb_s3rv3r"
     ports:
       - "445:445"
     volumes:
       - samba_storage:/storage
       - ./log/smb:/var/log/samba
+      - ./smb.conf:/etc/samba/smb.conf
     logging:
       driver: "json-file"
       options:
@@ -100,6 +105,7 @@ volumes:
   cowrie_data:
   cowrie_cfg:
   samba_storage:
+  ./log/apache2:
   ./log/cowrie:
   ./log/dvwa:
   ./log/dvwa_db:

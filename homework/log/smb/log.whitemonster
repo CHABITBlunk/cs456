@@ -1,0 +1,8 @@
+[2025/11/12 04:29:09.871595,  0] source3/printing/printer_list.c:58(get_printer_list_db)
+  get_printer_list_db: Failed to open printer_list.tdb
+[2025/11/12 04:29:09.871732,  0] source3/param/loadparm.c:3480(process_usershare_file)
+  process_usershare_file: stat of /var/lib/samba/usershares/data failed. Permission denied
+[2025/11/12 04:33:33.572357,  0] source3/printing/printer_list.c:58(get_printer_list_db)
+  get_printer_list_db: Failed to open printer_list.tdb
+[2025/11/12 04:33:33.572517,  0] source3/param/loadparm.c:3480(process_usershare_file)
+  process_usershare_file: stat of /var/lib/samba/usershares/data failed. Permission denied
