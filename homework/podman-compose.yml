@@ -67,8 +67,7 @@ services:
       - COWRIE_SSH_VERSION="SSH-2.0-OpenSSH_8.9p1"
       - COWRIE_USERDB_ENABLED=true
     volumes:
-      - cowrie_data:/cowrie/var
-      - cowrie_cfg:/cowrie/etc
+      - ./cowrie/etc:/cowrie/etc
       - ./log/cowrie:/cowrie/log
     logging:
       driver: "json-file"
@@ -102,8 +101,6 @@ services:
 
 volumes:
   dvwa_db_data:
-  cowrie_data:
-  cowrie_cfg:
   samba_storage:
   ./log/apache2:
   ./log/cowrie:
