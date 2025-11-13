@@ -1,3 +1,4 @@
-root:toor
-jmaster:password
-admin:adminpassword
+root:x:toor
+jmaster:x:*
+admin:x:*
+*:x:*

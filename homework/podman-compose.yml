@@ -58,14 +58,6 @@ services:
       - blue_team_net
     ports:
       - "2222:2222"
-    environment:
-      - COWRIE_TTYLOG_ENABLED=true
-      - COWRIE_DOWNLOADS_ENABLED=true
-      - COWRIE_SSH_LISTEN_PORT="2222"
-      - COWRIE_TELNET_ENABLED=false
-      - COWRIE_HOSTNAME="ssh-server"
-      - COWRIE_SSH_VERSION="SSH-2.0-OpenSSH_8.9p1"
-      - COWRIE_USERDB_ENABLED=true
     volumes:
       - ./cowrie/etc:/cowrie/etc
       - ./log/cowrie:/cowrie/log
