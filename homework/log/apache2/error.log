@@ -24,3 +24,26 @@
 [Thu Nov 13 21:51:50.740826 2025] [core:notice] [pid 279] AH00094: Command line: '/usr/sbin/apache2'
 [Thu Nov 13 21:53:26.204373 2025] [mpm_prefork:notice] [pid 278] AH00163: Apache/2.4.25 (Debian) configured -- resuming normal operations
 [Thu Nov 13 21:53:26.204472 2025] [core:notice] [pid 278] AH00094: Command line: '/usr/sbin/apache2'
+[Thu Nov 13 22:10:41.073663 2025] [mpm_prefork:notice] [pid 275] AH00163: Apache/2.4.25 (Debian) configured -- resuming normal operations
+[Thu Nov 13 22:10:41.073724 2025] [core:notice] [pid 275] AH00094: Command line: '/usr/sbin/apache2'
+[Fri Nov 14 22:06:14.253291 2025] [mpm_prefork:notice] [pid 275] AH00163: Apache/2.4.25 (Debian) configured -- resuming normal operations
+[Fri Nov 14 22:06:14.253391 2025] [core:notice] [pid 275] AH00094: Command line: '/usr/sbin/apache2'
+[Fri Nov 14 22:22:29.093454 2025] [mpm_prefork:notice] [pid 280] AH00163: Apache/2.4.25 (Debian) configured -- resuming normal operations
+[Fri Nov 14 22:22:29.093519 2025] [core:notice] [pid 280] AH00094: Command line: '/usr/sbin/apache2'
+[Fri Nov 14 22:24:08.749361 2025] [mpm_prefork:notice] [pid 281] AH00163: Apache/2.4.25 (Debian) configured -- resuming normal operations
+[Fri Nov 14 22:24:08.749419 2025] [core:notice] [pid 281] AH00094: Command line: '/usr/sbin/apache2'
+[Fri Nov 14 22:35:33.116303 2025] [mpm_prefork:notice] [pid 278] AH00163: Apache/2.4.25 (Debian) configured -- resuming normal operations
+[Fri Nov 14 22:35:33.116416 2025] [core:notice] [pid 278] AH00094: Command line: '/usr/sbin/apache2'
+[Mon Nov 17 01:42:05.973865 2025] [core:warn] [pid 285] AH00098: pid file /var/run/apache2/apache2.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Nov 17 01:42:05.982139 2025] [mpm_prefork:notice] [pid 285] AH00163: Apache/2.4.25 (Debian) configured -- resuming normal operations
+[Mon Nov 17 01:42:05.982181 2025] [core:notice] [pid 285] AH00094: Command line: '/usr/sbin/apache2'
+[Mon Nov 17 02:17:24.672270 2025] [mpm_prefork:notice] [pid 282] AH00163: Apache/2.4.25 (Debian) configured -- resuming normal operations
+[Mon Nov 17 02:17:24.672380 2025] [core:notice] [pid 282] AH00094: Command line: '/usr/sbin/apache2'
+[Mon Nov 17 02:29:42.676578 2025] [mpm_prefork:notice] [pid 277] AH00163: Apache/2.4.25 (Debian) configured -- resuming normal operations
+[Mon Nov 17 02:29:42.676681 2025] [core:notice] [pid 277] AH00094: Command line: '/usr/sbin/apache2'
+[Mon Nov 17 03:56:42.622714 2025] [mpm_prefork:notice] [pid 278] AH00163: Apache/2.4.25 (Debian) configured -- resuming normal operations
+[Mon Nov 17 03:56:42.622802 2025] [core:notice] [pid 278] AH00094: Command line: '/usr/sbin/apache2'
+[Mon Nov 17 04:59:06.151350 2025] [mpm_prefork:notice] [pid 279] AH00163: Apache/2.4.25 (Debian) configured -- resuming normal operations
+[Mon Nov 17 04:59:06.151440 2025] [core:notice] [pid 279] AH00094: Command line: '/usr/sbin/apache2'
+[Mon Nov 17 05:11:07.028960 2025] [mpm_prefork:notice] [pid 278] AH00163: Apache/2.4.25 (Debian) configured -- resuming normal operations
+[Mon Nov 17 05:11:07.029075 2025] [core:notice] [pid 278] AH00094: Command line: '/usr/sbin/apache2'

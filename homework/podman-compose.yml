@@ -60,7 +60,7 @@ services:
       - "2222:2222"
     volumes:
       - ./cowrie/etc:/cowrie/etc
-      - ./log/cowrie:/cowrie/log
+      - ./log/cowrie:/cowrie/var/lib/cowrie
     logging:
       driver: "json-file"
       options:
@@ -69,6 +69,19 @@ services:
     restart: unless-stopped
     entrypoint: "/cowrie/cowrie-env/bin/twistd"
     command: ["-n", "cowrie"]
+
+  cowrie_tcpdump:
+    image: nicolaka/netshoot:latest
+    container_name: cowrie_tcpdump
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    privileged: true
+    command: >
+      tcpdump -i lo port 2222 -w /tcpdump/cowrie_traffic.pcap
+    volumes:
+      - ./log/cowrie_tcpdump:/tcpdump
+    restart: unless-stopped
 
   smb:
     image: bsantanna/smb:latest
@@ -83,7 +96,6 @@ services:
     volumes:
       - samba_storage:/storage
       - ./log/smb:/var/log/samba
-      - ./smb.conf:/etc/samba/smb.conf
     logging:
       driver: "json-file"
       options:
@@ -96,6 +108,7 @@ volumes:
   samba_storage:
   ./log/apache2:
   ./log/cowrie:
+  ./log/cowrie_tcpdump:
   ./log/dvwa:
   ./log/dvwa_db:
   ./log/smb:
