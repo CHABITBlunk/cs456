@@ -1,4 +1,0 @@
-root:x:toor
-jmaster:x:*
-admin:x:*
-*:x:*
